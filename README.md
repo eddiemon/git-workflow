@@ -8,9 +8,18 @@ The `master` branch shall contain the latest, fully reviewed and developer teste
 **Release** branches are temporary branches for fixing the last things before deploying a release. This could be updating changelogs, setting the version numbers, etc. Shall be deleted when merged to `master`.
 
 ## Adding functionality, correcting bugs
+
+#### Quick list:
+1. Create *feature branch* named `JIRA-id-meaningful-name`
+2. Add feature/fix bug
+3. Test
+4. Create pull request and have it reviewed
+5. Address all review comments
+6. Merge without fast-forward and remove the feature branch
+
 When a new feature is to be added, or a bug is to be fixed, a new *feature branch* shall be created from either `master`, or the release branch the fix is going into.
 
-Feature branch names shall start with the JIRA id, and then a short but meaningful name in lowercase letter and words joined together with hyphen, e.g.:
+Feature branch names shall start with the JIRA id, and then a short but meaningful name in lowercase letter and words joined together with hyphens (kebab-case), e.g.:
 
 `JIRA-55-add-new-io-signals`
 
@@ -25,7 +34,14 @@ When the reviewer(s) has approved the work, the pull request shall be merged to 
 After merging, the code task is complete and the feature branch shall be deleted. Deleting the branches after merging allows for a quick overview on what work is currently active by checking which branches are present. Lingering finished branches pollutes the overview.
 
 ## Releasing
-When a release is to be made, a new release branch shall be created from `master`, or if the release is a fix of a previous release, from the tagged release (more information about tagging follows).
+#### Quick list:
+1. Create *release branch* named `r-x.y.z`
+2. Merge any release-specific feature branches
+3. Update version number and release notes
+4. Tag last commit with `release-x.y.z`
+5. Merge to master and remove the release branch
+
+When a release is to be made, a new *release branch* shall be created from `master`, or if the release is a fix of a previous release, from the tagged release (more information about tagging follows).
 
 Make sure that the branch which the release branch is created from contains all the functionality that shall go into the release, and **only** the functionality needed for the release, meaning that any feature that has been implemented but should not be included in the release shall be left out.
 
